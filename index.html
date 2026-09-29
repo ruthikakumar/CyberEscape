@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Escape</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="game">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="logo">
+                ◈ <span>CYBER</span> ESCAPE
+            </div>
+
+            <div class="mission">
+                MISSION 01
+            </div>
+
+            <div class="game-stats">
+
+    <div class="lives">
+        ❤️ <span id="lives">3</span>
+    </div>
+
+    <div class="score">
+        ⭐ <span id="score">0</span>
+    </div>
+
+    <div class="timer">
+        ⏱ <span id="time">60</span> SEC
+    </div>
+
+</div>
+
+        </header>
+
+
+        <!-- MAIN GAME AREA -->
+        <main class="game-area">
+
+            <!-- START SCREEN -->
+            <div id="startScreen" class="game-screen">
+
+                <div class="status">
+                    ● SYSTEM ONLINE
+                </div>
+
+                <h1>🔐 SYSTEM LOCKED</h1>
+
+                <p>
+                    A security breach has been detected.
+                </p>
+
+                <p>
+                    Find the access code before the system shuts down.
+                </p>
+
+                <div class="info-boxes">
+
+                    <div class="info-box">
+                        <span>MISSION</span>
+                        <strong>01</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>TIME</span>
+                        <strong>60 SEC</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <span>LEVEL</span>
+                        <strong>1</strong>
+                    </div>
+
+                </div>
+
+                <button onclick="startGame()">
+                    START MISSION
+                </button>
+
+            </div>
+
+
+            <!-- PUZZLE 1 -->
+            <div id="puzzle1" class="game-screen hidden">
+
+                <div class="status">
+                    ● SECURITY CHECK 01
+                </div>
+
+                <h1>🔢 NUMBER SEQUENCE</h1>
+
+                <p>
+                    What is the next number?
+                </p>
+
+                <div class="sequence">
+                    2 → 4 → 8 → 16 → ?
+                </div>
+
+                <input
+                    type="number"
+                    id="answer"
+                    placeholder="Enter answer"
+                >
+
+                <br>
+
+                <button onclick="checkAnswer()">
+                    SUBMIT CODE
+                </button>
+
+                <button onclick="hint1()">
+    💡 HINT (-50 POINTS)
+</button>
+
+<p id="hint1Message"></p>
+
+                <p id="message"></p>
+
+            </div>
+
+
+            <!-- PUZZLE 2 -->
+            <div id="puzzle2" class="game-screen hidden">
+
+    <div class="status">
+        ● SECURITY CHECK 02
+    </div>
+
+    <h1>🧩 LOGIC PANEL</h1>
+
+    <p>
+        Find the number directly below 1.
+    </p>
+
+    <div class="number-panel">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+
+    <input
+        type="number"
+        id="answer2"
+        placeholder="Enter number"
+    >
+
+    <br>
+
+    <button onclick="checkAnswer2()">
+        VERIFY
+    </button>
+    <button onclick="hint2()">
+    💡 HINT (-50 POINTS)
+</button>
+
+<p id="hint2Message"></p>
+
+    <p id="message2"></p>
+
+</div>
+
+
+            <!-- PUZZLE 3 -->
+            <div id="puzzle3" class="game-screen hidden">
+
+                <div class="status">
+                    ● SECURITY CHECK 03
+                </div>
+
+                <h1>🧠 MEMORY TEST</h1>
+
+                <p>
+                    Remember the sequence shown below.
+                </p>
+
+                <div id="sequenceBox">
+    🔴 🔵 🟢 🟡 🔵
+</div>
+
+                <button onclick="hideSequence()">
+                    I REMEMBER
+                </button>
+
+                <p id="memoryQuestion">
+    Remember the sequence.
+</p>
+
+                <input
+    type="text"
+    id="memoryAnswer"
+    placeholder="Click I REMEMBER first"
+    disabled
+>
+
+                <br>
+
+                <button onclick="checkMemory()">
+                    VERIFY MEMORY
+                </button>
+                <button onclick="hint3()">
+    💡 HINT (-50 POINTS)
+</button>
+
+<p id="hint3Message"></p>
+
+                <p id="memoryMessage"></p>
+
+            </div>
+
+
+            <!-- FINAL LOCK -->
+            <div id="finalLock" class="game-screen hidden">
+
+                <div class="status">
+                    ● FINAL SECURITY LAYER
+                </div>
+
+                <h1>🔐 FINAL SYSTEM LOCK</h1>
+
+                <p>
+                    All security checks have been completed.
+                </p>
+
+                <p>
+                    Enter the final access code.
+                </p>
+
+                <input
+                    type="number"
+                    id="finalAnswer"
+                    placeholder="ACCESS CODE"
+                >
+
+                <br>
+
+                <button onclick="unlockSystem()">
+                    UNLOCK SYSTEM
+                </button>
+
+                <p id="finalMessage"></p>
+
+            </div>
+
+
+         <div id="gameOver" class="game-screen hidden">
+
+    <div class="status">
+        ● MISSION FAILED
+    </div>
+
+    <h1>💀 SYSTEM LOCKED</h1>
+
+    <p id="gameOverMessage">
+        Time has expired.
+    </p>
+
+    <button onclick="location.reload()">
+        TRY AGAIN
+    </button>
+
+</div>
+
+
+            <!-- WIN SCREEN -->
+            <div id="winScreen" class="game-screen hidden">
+
+    <div class="status">
+        ● SYSTEM BREACHED
+    </div>
+
+    <h1>🎉 SYSTEM UNLOCKED!</h1>
+
+    <p>
+        MISSION COMPLETE
+    </p>
+
+    <div class="final-stats">
+
+        <div class="final-stat">
+            <span>⭐ FINAL SCORE</span>
+            <strong id="finalScore">0</strong>
+        </div>
+
+        <div class="final-stat">
+            <span>⏱ TIME REMAINING</span>
+            <strong id="finalTime">0 SEC</strong>
+        </div>
+
+        <div class="final-stat">
+            <span>❤️ LIVES REMAINING</span>
+            <strong id="finalLives">0</strong>
+        </div>
+
+    </div>
+
+    <p class="success-text">
+        SECURITY STATUS: BREACHED ✓
+    </p>
+
+    <button onclick="location.reload()">
+        PLAY AGAIN
+    </button>
+
+</div>
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <span>CYBER ESCAPE v1.0</span>
+
+            <span>SECURITY PROTOCOL: ACTIVE</span>
+
+            <span>HTML • CSS • JAVASCRIPT</span>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
